@@ -34,10 +34,6 @@ const SearchPage = () => {
     setLoading(false);
   };
 
-  /*  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  }; */
-
   return (
     <>
       <h1>Search for your favorite recipe</h1>
