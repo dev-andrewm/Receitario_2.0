@@ -16,6 +16,7 @@
 
 .search-box {
   width: 100%;
+  max-width: 700px;
 }
 
 button {
@@ -80,6 +81,7 @@ form {
 
 .recipes-box {
   max-height: 100vh;
+  max-width: 700px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
