@@ -34,9 +34,9 @@ const SearchPage = () => {
     setLoading(false);
   };
 
-  const handleChange = (event) => {
+  /*  const handleChange = (event) => {
     setSearchTerm(event.target.value);
-  };
+  }; */
 
   return (
     <>
@@ -47,7 +47,9 @@ const SearchPage = () => {
           type="text"
           placeholder="Dish name"
           value={searchTerm}
-          onChange={handleChange}
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
           onKeyDown={handleKeyDown}
         />
         <img className="lupa" src={lupa} alt="" onClick={handleClick} />
