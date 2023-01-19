@@ -43,7 +43,7 @@ const RecipeDetailsPage = () => {
 
   return (
     <>
-      <Link className="link-back" to={'/'}>
+      <Link className="link-back" to="/">
         &lt;&lt;Back
       </Link>
       <div className="recipe-details-box">
@@ -58,8 +58,8 @@ const RecipeDetailsPage = () => {
                   value !== '' &&
                   value !== null,
               )
-              .map(([key, value]) => (
-                <li>
+              .map(([key, value], index) => (
+                <li key={index}>
                   {`${recipe[0][`strMeasure${key.match(/\d+/)[0]}`]} ${value}`}
                 </li>
               ))}

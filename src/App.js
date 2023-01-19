@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Search />}></Route>
           <Route path="recipe/:id" element={<Recipedetails />}></Route>
+          <Route path="search" element={<Search />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

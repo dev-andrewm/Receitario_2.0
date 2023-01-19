@@ -14,14 +14,19 @@
   height: calc(100vh - 15px);
 }
 
-.lupa {
-  width: 40px;
+.search-box {
+  width: 100%;
+}
+
+button {
+  width: 60px;
   height: 40px;
   margin-top: 15px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.search-box {
+form {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -125,6 +130,7 @@
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 .recipe__box > p {

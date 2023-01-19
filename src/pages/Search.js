@@ -1,32 +1,30 @@
-import lupa from '../lupa.svg';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { BsSearch } from 'react-icons/bs';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 const SearchPage = () => {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
-  const [results, setResults] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleClick();
-    }
-  };
+  const searchURL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  const query = searchParams.get('q');
 
-  const handleClick = async () => {
+  const getSearchedRecipes = async (url) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`,
-      );
-      if (!response.ok) {
-        throw new Error(response.statusText);
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(res.statusText);
       }
-      const data = await response.json();
-      setResults(data.meals);
+      const data = await res.json();
+
+      setRecipes(data.meals);
     } catch (e) {
       setError(e.message);
     }
@@ -34,37 +32,56 @@ const SearchPage = () => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    const searchWithQueryURL = `${searchURL}${query}`;
+    getSearchedRecipes(searchWithQueryURL);
+  }, [query]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!searchTerm) return;
+
+    navigate(`/search?q=${searchTerm}`);
+    setSearchTerm('');
+  };
+
   return (
     <>
-      <h1>Search for your favorite recipe</h1>
+      <Link to="/">
+        <h1>Search for your favorite recipe</h1>
+      </Link>
       <div className="search-box">
-        <input
-          className="meal-input-field"
-          type="text"
-          placeholder="Dish name"
-          value={searchTerm}
-          onChange={(event) => {
-            setSearchTerm(event.target.value);
-          }}
-          onKeyDown={handleKeyDown}
-        />
-        <img className="lupa" src={lupa} alt="" onClick={handleClick} />
+        <form onSubmit={handleSubmit}>
+          <input
+            className="meal-input-field"
+            type="text"
+            placeholder="Dish name"
+            value={searchTerm}
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+          <button type="submit">
+            <BsSearch />
+          </button>
+        </form>
       </div>
       {loading && <div className="loader"></div>}
       {error && <div>{error}</div>}
-      {results !== null ? (
+      {recipes !== null ? (
         <div className="recipes-box">
-          {results.map((result) => (
+          {recipes.map((recipe) => (
             <Link
               className="link"
-              key={result.idMeal}
-              to={`/recipe/${result.idMeal}`}
+              key={recipe.idMeal}
+              to={`/recipe/${recipe.idMeal}`}
             >
               <div className="recipe__box">
-                <p>{result.strMeal}</p>
+                <p>{recipe.strMeal}</p>
                 <img
                   className="recipe__image"
-                  src={result.strMealThumb}
+                  src={recipe.strMealThumb}
                   alt="Meal"
                 />
               </div>
