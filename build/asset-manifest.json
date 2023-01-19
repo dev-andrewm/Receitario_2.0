@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Receitario_2.0/static/css/main.5f94885f.css",
+    "main.js": "/Receitario_2.0/static/js/main.cddfe544.js",
+    "static/media/bg.jpg": "/Receitario_2.0/static/media/bg.1442271df062908e878c.jpg",
+    "index.html": "/Receitario_2.0/index.html",
+    "main.5f94885f.css.map": "/Receitario_2.0/static/css/main.5f94885f.css.map",
+    "main.cddfe544.js.map": "/Receitario_2.0/static/js/main.cddfe544.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5f94885f.css",
+    "static/js/main.cddfe544.js"
+  ]
+}
