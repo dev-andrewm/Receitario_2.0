@@ -194,8 +194,7 @@ a {
   }
 
   .recipe-details-box {
-    height: 50%;
-
+    width: 90%;
     flex-direction: column;
   }
 
