@@ -34,7 +34,9 @@ const SearchPage = () => {
 
   useEffect(() => {
     const searchWithQueryURL = `${searchURL}${query}`;
-    getSearchedRecipes(searchWithQueryURL);
+    if (query !== null) {
+      getSearchedRecipes(searchWithQueryURL);
+    }
   }, [query]);
 
   const handleSubmit = (e) => {
