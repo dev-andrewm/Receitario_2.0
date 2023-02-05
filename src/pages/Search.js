@@ -33,8 +33,8 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-    const searchWithQueryURL = `${searchURL}${query}`;
     if (query !== null) {
+      const searchWithQueryURL = `${searchURL}${query}`;
       getSearchedRecipes(searchWithQueryURL);
     }
   }, [query]);
