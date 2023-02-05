@@ -2,9 +2,8 @@ import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
-const SearchPage = () => {
+const SearchPage = ({ setSearchTerm, searchTerm }) => {
   const [loading, setLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
   const [recipes, setRecipes] = useState([]);
   const navigate = useNavigate();
@@ -45,7 +44,6 @@ const SearchPage = () => {
     if (!searchTerm) return;
 
     navigate(`/search?q=${searchTerm}`);
-    setSearchTerm('');
   };
 
   return (

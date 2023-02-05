@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const RecipeDetailsPage = () => {
+const RecipeDetailsPage = ({ searchTerm }) => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -43,7 +43,7 @@ const RecipeDetailsPage = () => {
 
   return (
     <>
-      <Link className="link-back" to="/">
+      <Link className="link-back" to={`/search?q=${searchTerm}`}>
         &lt;&lt;Back
       </Link>
       <div className="recipe-details-box">
